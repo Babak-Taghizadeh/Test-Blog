@@ -27,6 +27,7 @@ export const getBlog = async ({ queryKey }: { queryKey: string[] }): Promise<Blo
     );
     return response.data;
   } catch (error) {
+    console.error(`Failed to fetch blog with ID ${id}:`, error);
     throw new Error(
       error instanceof Error ? error.message : "An unknown error occurred"
     );
