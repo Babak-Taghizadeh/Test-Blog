@@ -34,7 +34,9 @@ export const POST = async (request: NextRequest) => {
   );
   if (isUser) {
     const token = uuidv4();
-    cookies().set("token", token, {
+    cookies().set({
+      name: 'token',
+      value: token,
       httpOnly: true,
       secure: true,
       sameSite: "lax",
@@ -43,7 +45,8 @@ export const POST = async (request: NextRequest) => {
     });
     return NextResponse.json({ message: "خوش آمدید."}, { 
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Set-Cookie": `token=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Expires=${new Date(Date.now() + 60 * 60 * 24 * 1000).toUTCString()}`
         },
         status: 200
      });

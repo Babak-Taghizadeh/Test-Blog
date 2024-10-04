@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.line-height > p {
+    line-height: 2.2rem;
+    text-wrap: balance;
+    text-align: center;
+}

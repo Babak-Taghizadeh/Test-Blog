@@ -6,7 +6,6 @@ import {
 import { getBlog } from "../../../../lib/Actions";
 import Blog from "@/components/Blog";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const page = ({params}: {params: {id: string}}) => {
   const { id } = params;
@@ -17,12 +16,11 @@ const page = ({params}: {params: {id: string}}) => {
   });
 
   return (
-    <section className="min-h-dvh flex flex-col items-center justify-between px-12">
+    <section className="min-h-dvh flex flex-col items-center justify-between">
       <Header backButton={true} />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Blog id={id} />
       </HydrationBoundary>
-      <Footer />
     </section>
   );
 };

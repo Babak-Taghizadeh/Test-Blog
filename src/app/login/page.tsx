@@ -13,6 +13,8 @@ import { useMutation } from "@tanstack/react-query";
 import RequestLogin from "../../../lib/RequestLogin";
 import { ROUTES } from "../../../lib/constants";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Logo from "../../../public/logo.png";
 
 // VALIDATION
 const loginSchema = yup.object().shape({
@@ -28,7 +30,7 @@ const loginSchema = yup.object().shape({
 
 // LOGIN PAGE
 const LoginPage = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const mutation = useMutation({
     mutationFn: (loginInfo: LoginProps) => RequestLogin(loginInfo),
@@ -37,14 +39,14 @@ const LoginPage = () => {
         type: "success",
         position: "top-center",
       });
-      router.push(ROUTES.BLOGS)
+      router.push(ROUTES.BLOGS);
     },
     onError: (error) => {
       toast(error.message, {
         type: "error",
         position: "top-center",
       });
-    }
+    },
   });
 
   // REACT HOOK FORM
@@ -87,12 +89,16 @@ const LoginPage = () => {
 
   return (
     <form
-      className="min-h-dvh flex flex-col w-full justify-center items-center gap-7"
+      className="min-h-dvh px-8 flex flex-col w-full justify-center items-center gap-8"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <header className="flex flex-col gap-4 items-center mb-8">
+        <Image className="rounded-full w-44" src={Logo} alt="logo" />
+        <h1 className="text-3xl font-bold">وبلاگ تخصصی لورم</h1>
+      </header>
       <InputField type="text" name="userName" register={register} />
       <InputField type="password" name="password" register={register} />
-      <Button as="button" type="submit">
+      <Button className="h-10 pb-2" as="button" type="submit">
         ورود
       </Button>
     </form>

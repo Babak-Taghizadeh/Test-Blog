@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Arabic } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import ReactQueryProvider from "../../utils/Providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const notoSansArabic = Noto_Sans_Arabic({
+const Vazir = Vazirmatn({
   subsets: ["arabic"],
   display: "swap",
   weight: ["400", "600"],
@@ -23,9 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="rtl">
-      <body className={`${notoSansArabic.className} bg-background antialiased`}>
+      <body className={`${Vazir.className} bg-background antialiased`}>
+        <ToastContainer />
         <ReactQueryProvider>
-          <ToastContainer />
           {children}
           <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>

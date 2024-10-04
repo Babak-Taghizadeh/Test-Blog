@@ -6,7 +6,6 @@ import {
 import { getBlogs } from "../../../lib/Actions";
 import Blogs from "@/components/Blogs";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const BlogsPage = () => {
   const queryClient = new QueryClient();
@@ -21,7 +20,6 @@ const BlogsPage = () => {
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Blogs />
       </HydrationBoundary>
-      <Footer />
     </section>
   );
 };

@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { getBlogs } from "../../lib/Actions";
 import { useQuery } from "@tanstack/react-query";
-import DOMPurify from "dompurify";
 import Link from "next/link";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { ROUTES } from "../../lib/constants";
 import LoadingSpinner from "./ui/LoadingSpinner";
+import { sanitizeSliceExcerpt } from "../../utils/sanitizeText";
+import { formatDate } from "../../utils/formatDate";
 
 const Blogs = () => {
   const { data, isLoading, error } = useQuery({
@@ -15,9 +16,12 @@ const Blogs = () => {
     queryFn: () => getBlogs(),
   });
 
-
   if (isLoading) {
-    return <div className="h-dvh flex items-center justify-center"><LoadingSpinner /></div>;
+    return (
+      <div className="h-dvh flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (error && error instanceof Error) {
@@ -25,17 +29,10 @@ const Blogs = () => {
   }
 
   return (
-    <section className="pt-28 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-12 lg:gap-24 place-items-center">
+    <section className="pt-28 pb-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-12 lg:gap-24 place-items-center">
       {data?.map((blog) => {
-        const sanitizedExcerpt = DOMPurify.sanitize(blog.excerpt.rendered);
-        const cleanedExcerpt = sanitizedExcerpt.slice(0, -9);
-
-        const date = new Date(blog.date);
-        const formattedDate = date.toLocaleDateString("fa-IR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
+        const cleanedExcerpt = sanitizeSliceExcerpt(blog.excerpt.rendered);
+        const formattedDate = formatDate(blog.date);
         return (
           <article
             className="h-[480px] w-[300px] bg-primary flex flex-col rounded-lg shadow-lg shadow-gray-300"
@@ -45,8 +42,8 @@ const Blogs = () => {
               <Image
                 className="rounded-t-lg"
                 src={blog.featured_media_object.source_url}
-                fill={true} // Makes the image fill the container
-                objectFit="cover" // Ensures the image covers the entire area
+                fill={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority
                 alt={blog.featured_media_object.title}
               />

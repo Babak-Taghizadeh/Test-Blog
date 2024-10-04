@@ -22,19 +22,20 @@ const Header = ({ backButton }: { backButton?: boolean }) => {
 
   return (
     <header
-      className={`h-20 w-full flex border-b border-black justify-between items-center fixed top-0 left-0 px-8 rounded-b-lg lg:px-[26rem] transition-transform duration-500 ease-in-out ${
+      className={`h-20 w-full flex border-b border-black justify-between items-center fixed top-0 left-0 px-8 rounded-b-lg lg:px-[16rem] xl:px-[22rem] transition-transform duration-500 ease-in-out ${
         scrollY ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       }`}
     >
-      <h1 className="text-xl font-bold">وبلاگ تخصصی ماشین آلات</h1>
-      {backButton && (
+      {backButton ? (
         <Link
           href={ROUTES.BLOGS}
-          className="absolute right-10 bg-slate-900 text-primary flex items-center gap-2 p-2 border rounded-xl"
+          className="bg-slate-900 text-primary flex items-center gap-2 p-2 border rounded-xl"
         >
           <MdArrowForwardIos size={25} />
           <span>بلاگ ها</span>
         </Link>
+      ) : (
+        <h1 className="text-2xl font-bold">وبلاگ تخصصی لورم</h1>
       )}
       <Button
         className="flex items-center justify-center gap-2 text-sm w-fit p-2 text-center"

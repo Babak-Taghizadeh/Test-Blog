@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <Component
-      className={`w-24 border-2 rounded-lg border-black hover:bg-slate-300 text-xl ${className}`}
+      className={`w-24 border-2 py-1 text-center rounded-lg border-black hover:bg-slate-300 text-xl ${className}`}
       onClick={onClick}
       href={href}
       type={type}
