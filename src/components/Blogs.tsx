@@ -9,9 +9,10 @@ import { ROUTES } from "../../lib/constants";
 import LoadingSpinner from "./ui/LoadingSpinner";
 import { sanitizeSliceExcerpt } from "../../utils/sanitizeText";
 import { formatDate } from "../../utils/formatDate";
+import Button from "./ui/Button";
 
 const Blogs = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["blogs"],
     queryFn: () => getBlogs(),
   });
@@ -25,7 +26,10 @@ const Blogs = () => {
   }
 
   if (error && error instanceof Error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="h-dvh flex flex-col items-center justify-center">
+      <p>Error: {error.message}</p>
+      <Button onClick={() => refetch()} as="button" >Retry</Button>
+      </div>;
   }
 
   return (

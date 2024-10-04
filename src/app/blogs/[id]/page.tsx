@@ -40,7 +40,7 @@ export async function generateMetadata({
   };
 }
 
-const blogPage = ({ params }: { params: { id: string } }) => {
+const BlogPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const queryClient = new QueryClient();
   queryClient.prefetchQuery({
@@ -58,4 +58,4 @@ const blogPage = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default blogPage;
+export default BlogPage;

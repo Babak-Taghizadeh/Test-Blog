@@ -4,7 +4,7 @@ import { BlogProps } from "@/types/types";
 
 const getBlogs = async (): Promise<BlogProps[]> => {
   const jsonData = await fs.readFile(
-    process.cwd() + "/src/app/api/blogs/blog.json",
+    process.cwd() + "/api/blogs/blog.json",
     "utf-8"
   );
   return JSON.parse(jsonData);

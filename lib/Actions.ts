@@ -13,6 +13,7 @@ export const getBlogs = async (): Promise<BlogProps[]> => {
     );
     return response.data;
   } catch (error) {
+    console.error("Error fetching blogs:", error);
     throw new Error(
       error instanceof Error ? error.message : "An unknown error occurred"
     );

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "بلاگ ها",
 };
 
-const blogsPage = () => {
+const BlogsPage = () => {
   const queryClient = new QueryClient();
   queryClient.prefetchQuery({
     queryKey: ["blogs"],
@@ -29,4 +29,4 @@ const blogsPage = () => {
   );
 };
 
-export default blogsPage;
+export default BlogsPage;

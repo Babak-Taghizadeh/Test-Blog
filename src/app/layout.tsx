@@ -3,7 +3,6 @@ import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import ReactQueryProvider from "../../utils/Providers/ReactQueryProvider";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const Vazir = Vazirmatn({
   subsets: ["arabic"],
@@ -30,7 +29,6 @@ export default function RootLayout({
         <ToastContainer />
         <ReactQueryProvider>
           {children}
-          <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>
       </body>
     </html>
