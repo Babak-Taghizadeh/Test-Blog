@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
+import ReactQueryProvider from "../../utils/Providers/ReactQueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  display: "swap",
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -24,11 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" dir="rtl">
+      <body className={`${notoSansArabic.className} bg-background antialiased`}>
+        <ReactQueryProvider>
+          <ToastContainer />
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ReactQueryProvider>
       </body>
     </html>
   );
