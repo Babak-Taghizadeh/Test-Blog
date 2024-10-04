@@ -8,7 +8,9 @@ import { redirect } from "next/navigation";
 
 export const getBlogs = async (): Promise<BlogProps[]> => {
   try {
-    const response: AxiosResponse<BlogProps[]> = await axios.get("/api/blogs");
+    const response: AxiosResponse<BlogProps[]> = await axios.get(
+      API_ROUTES.BLOGS_FETCH
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching blogs:", error);
