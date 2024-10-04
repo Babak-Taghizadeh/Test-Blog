@@ -3,11 +3,22 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getBlog } from "../../../../lib/Actions";
+import { getBlog, getBlogs } from "../../../../lib/Actions";
 import Blog from "@/components/Blog";
 import Header from "@/components/Header";
 import { Metadata } from "next";
 
+export async function generateStaticParams() {
+  try {
+    const blogs = await getBlogs();    
+    return blogs.map((blog: { id: number }) => ({
+      id: blog.id.toString(),
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
+}
 export async function generateMetadata({
   params,
 }: {

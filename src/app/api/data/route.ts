@@ -7,7 +7,7 @@ const getBlogs = async(): Promise<BlogProps[]> => {
     const jsonData = await fs.readFile(path.join(process.cwd(), 'src/app/api/data/blog.json'), 'utf-8');
     const blogs = JSON.parse(jsonData);
     return blogs;
-} 
+}
 
 export const GET = async() => {
     try {

@@ -16,6 +16,20 @@ export const metadata: Metadata = {
     template: "%s - لورم بلاگ",
   },
   description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+  openGraph: {
+    title: "لورم بلاگ",
+    description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ",
+    url: "https://test-blog-eight-xi.vercel.app/",
+    images: [
+      {
+        url: "https://example.com/image.jpg",
+        width: 800,
+        height: 600,
+        alt: "Image description",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
