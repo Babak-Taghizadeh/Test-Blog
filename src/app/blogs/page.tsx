@@ -6,22 +6,27 @@ import {
 import { getBlogs } from "../../../lib/Actions";
 import Blogs from "@/components/Blogs";
 import Header from "@/components/Header";
+import { Metadata } from "next";
 
-const BlogsPage = () => {
+export const metadata: Metadata = {
+  title: "بلاگ ها",
+};
+
+const blogsPage = async () => {
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ["blogs"],
     queryFn: getBlogs,
   });
 
   return (
-    <section className="min-h-dvh flex flex-col items-center justify-between px-12">
-      <Header />
-      <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <section className="min-h-dvh flex flex-col items-center justify-between px-12">
+        <Header />
         <Blogs />
-      </HydrationBoundary>
-    </section>
+      </section>
+    </HydrationBoundary>
   );
 };
 
-export default BlogsPage;
+export default blogsPage;

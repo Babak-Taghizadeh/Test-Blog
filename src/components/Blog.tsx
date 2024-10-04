@@ -6,9 +6,10 @@ import Image from "next/image";
 import LoadingSpinner from "./ui/LoadingSpinner";
 import { sanitizeContent } from "../../utils/sanitizeText";
 import { formatDate } from "../../utils/formatDate";
+import { notFound } from "next/navigation";
 
 const Blog = ({ id }: { id: string }) => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, status } = useQuery({
     queryKey: ["blog", id],
     queryFn: () => getBlog({ queryKey: ["blog", id] }),
   });
