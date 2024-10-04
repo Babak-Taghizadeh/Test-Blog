@@ -40,10 +40,10 @@ export async function generateMetadata({
   };
 }
 
-const blogPage = async ({ params }: { params: { id: string } }) => {
+const blogPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+  queryClient.prefetchQuery({
     queryKey: ["blog", id],
     queryFn: getBlog,
   });

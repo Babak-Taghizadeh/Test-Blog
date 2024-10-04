@@ -92,7 +92,7 @@ const LoginPage = () => {
       className="min-h-dvh px-8 flex flex-col w-full justify-center items-center gap-8"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <header className="flex flex-col gap-4 items-center mb-8">
+      <header className="flex flex-col gap-8 items-center mb-8">
         <Image className="rounded-full w-44" src={Logo} alt="logo" />
         <h1 className="text-3xl font-bold">وبلاگ تخصصی لورم</h1>
       </header>

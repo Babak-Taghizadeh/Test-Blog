@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "بلاگ ها",
 };
 
-const blogsPage = async () => {
+const blogsPage = () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+  queryClient.prefetchQuery({
     queryKey: ["blogs"],
     queryFn: getBlogs,
   });

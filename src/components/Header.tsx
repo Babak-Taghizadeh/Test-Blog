@@ -5,6 +5,8 @@ import Button from "./ui/Button";
 import { MdOutlineExitToApp, MdArrowForwardIos } from "react-icons/md";
 import Link from "next/link";
 import { ROUTES } from "../../lib/constants";
+import { signOut } from "../../lib/Actions";
+
 
 const Header = ({ backButton }: { backButton?: boolean }) => {
   const [scrollY, setScrollY] = useState<boolean>(false);
@@ -19,6 +21,10 @@ const Header = ({ backButton }: { backButton?: boolean }) => {
       window.removeEventListener("scroll", handleScrollY);
     };
   }, []);
+
+  const handleSignOut = async () => {
+    signOut()
+  }
 
   return (
     <header
@@ -40,6 +46,7 @@ const Header = ({ backButton }: { backButton?: boolean }) => {
       <Button
         className="flex items-center justify-center gap-2 text-sm w-fit p-2 text-center"
         as="button"
+        onClick={handleSignOut}
       >
         <MdOutlineExitToApp size={22} />
         <span>خروج</span>

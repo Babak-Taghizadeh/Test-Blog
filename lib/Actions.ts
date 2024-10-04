@@ -3,6 +3,8 @@
 import { BlogProps } from "@/types/types";
 import axios, { AxiosResponse } from "axios";
 import { API_ROUTES } from "./constants";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const getBlogs = async (): Promise<BlogProps[]> => {
   try {
@@ -31,4 +33,7 @@ export const getBlog = async ({ queryKey }: { queryKey: string[] }): Promise<Blo
   }
 };
 
-
+export const signOut = () => {
+  cookies().set("token", "", {expires: new Date(0)})
+  redirect("/")
+};
