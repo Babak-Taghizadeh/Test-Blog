@@ -8,7 +8,7 @@ import { sanitizeContent } from "../../utils/sanitizeText";
 import { formatDate } from "../../utils/formatDate";
 
 const Blog = ({ id }: { id: string }) => {
-  const { data, isLoading, error, status } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["blog", id],
     queryFn: () => getBlog({ queryKey: ["blog", id] }),
   });
