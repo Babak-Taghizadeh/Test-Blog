@@ -1,7 +1,7 @@
 export const API_ROUTES = {
     LOGIN_REQUEST: "/api/auth",
-    BLOGS_FETCH: "http://localhost:3000/api/blogs",
-    BLOG_FETCH: (id: string) => `http://localhost:3000/api/blogs/${id}`
+    BLOGS_FETCH: "https://test-blog-psi-eight.vercel.app/api/blogs",
+    BLOG_FETCH: (id: string) => `https://test-blog-psi-eight.vercel.app/api/blogs/${id}`
 }
 
 export const ROUTES = {
