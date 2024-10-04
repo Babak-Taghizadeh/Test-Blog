@@ -1,7 +1,7 @@
 "use server";
 
 import { BlogProps } from "@/types/types";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { API_ROUTES } from "./constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -14,9 +14,11 @@ export const getBlogs = async (): Promise<BlogProps[]> => {
     return response.data;
   } catch (error) {
     console.error("Error fetching blogs:", error);
-    throw new Error(
-      error instanceof Error ? error.message : "An unknown error occurred"
-    );
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data?.error || "خطایی پیش آمده");
+    } else {
+      throw new Error("لطفا مجددا امتحان کنید");
+    }
   }
 };
 
@@ -29,9 +31,11 @@ export const getBlog = async ({ queryKey }: { queryKey: string[] }): Promise<Blo
     return response.data;
   } catch (error) {
     console.error(`Failed to fetch blog with ID ${id}:`, error);
-    throw new Error(
-      error instanceof Error ? error.message : "An unknown error occurred"
-    );
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data?.error || "خطایی پیش آمده");
+    } else {
+      throw new Error("لطفا مجددا امتحان کنید");
+    }
   }
 };
 
