@@ -34,14 +34,21 @@ export const POST = async (request: NextRequest) => {
   );
   if (isUser) {
     const token = uuidv4();
-    cookies().set("token", token,{
+    const response = NextResponse.json(
+      { message: "خوش آمدید." },
+      { status: 200 }
+    );
+    response.cookies.set("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",  
+      sameSite: "lax",
       path: "/",
       expires: new Date(Date.now() + 60 * 60 * 24 * 1000),
     });
-    return NextResponse.json({ message: "خوش آمدید."}, { status: 200});
+    return response;
   }
-  return NextResponse.json({ error: "اطلاعات وارد شده نا معتر هستند" }, { status: 401 });
+  return NextResponse.json(
+    { error: "اطلاعات وارد شده نا معتر هستند" },
+    { status: 401 }
+  );
 };
