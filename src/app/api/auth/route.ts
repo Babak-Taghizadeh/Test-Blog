@@ -36,20 +36,12 @@ export const POST = async (request: NextRequest) => {
     const token = uuidv4();
     cookies().set("token", token,{
       httpOnly: true,
-      secure: true,
-      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",  
       path: "/",
       expires: new Date(Date.now() + 60 * 60 * 24 * 1000),
     });
-    return NextResponse.json(
-      { message: "خوش آمدید." },
-      {
-        status: 200,
-      }
-    );
+    return NextResponse.json({ message: "خوش آمدید."}, { status: 200});
   }
-  return NextResponse.json(
-    { error: "اطلاعات وارد شده نا معتر هستند" },
-    { status: 401 }
-  );
+  return NextResponse.json({ error: "اطلاعات وارد شده نا معتر هستند" }, { status: 401 });
 };

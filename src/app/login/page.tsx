@@ -46,7 +46,6 @@ const LoginPage = () => {
         type: "error",
         position: "top-center",
       });
-      console.log(error)
     },
   });
 

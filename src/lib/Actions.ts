@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 // LOGIN ACTION
 export const RequestLogin = async(loginInfo: LoginProps): Promise<LoginResponse> => {
     try {
-        const response = await fetch(API_ROUTES.LOGIN_REQUEST, {
+        const response = await fetch("http://localhost:3000/api/auth", {
           method: "POST",
           body: JSON.stringify(loginInfo),
           headers: { "Content-Type": "application/json" },
@@ -17,7 +17,7 @@ export const RequestLogin = async(loginInfo: LoginProps): Promise<LoginResponse>
         return response.json();
       } catch (error) {
         if (error instanceof Error) {
-          throw new Error(error.message + "خطایی پیش آمده");
+          throw new Error(error.message || "خطایی پیش آمده");
         } else {
           throw new Error("لطفا مجددا امتحان کنید");
         }
