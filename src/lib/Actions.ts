@@ -17,14 +17,19 @@ export const RequestLogin = async (
       body: JSON.stringify(loginInfo),
       headers: { "Content-Type": "application/json" },
     });
+    if (!response.ok) {
+      throw new Error((await response.json()).message);
+    }
+
     const authData = await response.json();
-    if (response.status === 200) {
-      cookies().set("token", token);
-      return authData;
-    }
-    if (response.status === 401) {
-      throw new Error(authData.message);
-    }
+    cookies().set("token", token, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    });
+    return authData;
   } catch (error) {
     console.error(error);
     if (error instanceof Error) {
@@ -34,7 +39,6 @@ export const RequestLogin = async (
     }
   }
 };
-
 
 // SIGNING OUT ACTION
 export const signOut = () => {

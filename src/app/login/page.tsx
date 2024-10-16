@@ -41,9 +41,10 @@ const LoginPage = () => {
       router.push(ROUTES.BLOGS);
     },
     onError: (error) => {
+      console.error(error);
       toast.error(error.message, {
         position: "top-center",
-      })
+      });
     },
   });
 
