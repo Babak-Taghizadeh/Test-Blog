@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getBlogs } from "@/lib/Actions";
+import { getBlogs } from "@/lib/getBlogs";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -16,7 +16,7 @@ const Blogs = () => {
     queryKey: ["blogs"],
     queryFn: () => getBlogs(),
   });
-
+  console.log(error);
   if (isLoading) {
     return (
       <div className="h-dvh flex items-center justify-center">
@@ -26,10 +26,14 @@ const Blogs = () => {
   }
 
   if (error && error instanceof Error) {
-    return <div className="h-dvh flex flex-col items-center justify-center">
-      <p>Error: {error.message}</p>
-      <Button onClick={() => refetch()} as="button" >Retry</Button>
-      </div>;
+    return (
+      <div className="h-dvh flex flex-col items-center justify-center">
+        <p>Error: {error.message}</p>
+        <Button onClick={() => refetch()} as="button">
+          Retry
+        </Button>
+      </div>
+    );
   }
 
   return (

@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <body className={`${Vazir.className} bg-background antialiased`}>
-        <ToastContainer />
+        <ToastContainer style={{ textAlign: "right" }} />
         <ReactQueryProvider>
           {children}
         </ReactQueryProvider>

@@ -35,5 +35,5 @@ export const POST = async (request: NextRequest) => {
       status: 200
     });
   }
-  return NextResponse.json({ error: "اطلاعات وارد شده نا معتر هستند" }, { status: 401 });
+  return NextResponse.json({ message: "اطلاعات وارد شده نا معتبر هستند" }, { status: 401 });
 };

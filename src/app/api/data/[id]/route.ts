@@ -4,7 +4,10 @@ import { BlogProps } from "@/types/types";
 import path from "path";
 
 const getBlogs = async (): Promise<BlogProps[]> => {
-  const jsonData = await fs.readFile(path.join(process.cwd(), 'src/app/api/data/blog.json'), 'utf-8');
+  const jsonData = await fs.readFile(
+    path.join(process.cwd(), "src/app/api/data/blog.json"),
+    "utf-8"
+  );
   const blogs = JSON.parse(jsonData);
   return blogs;
 };
@@ -19,5 +22,8 @@ export const GET = async (
   if (isBlog) {
     return NextResponse.json(isBlog);
   }
-return NextResponse.json({ error: "بلاگ مورد نظر یافت نشد" }, { status: 404 });
+  return NextResponse.json(
+    { error: "بلاگ مورد نظر یافت نشد" },
+    { status: 404 }
+  );
 };

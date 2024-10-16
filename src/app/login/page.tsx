@@ -35,17 +35,15 @@ const LoginPage = () => {
   const mutation = useMutation({
     mutationFn: (loginInfo: LoginProps) => RequestLogin(loginInfo),
     onSuccess: (data) => {
-      toast(data.message, {
-        type: "success",
+      toast.success(data?.message, {
         position: "top-center",
       });
       router.push(ROUTES.BLOGS);
     },
     onError: (error) => {
-      toast(error.message, {
-        type: "error",
+      toast.error(error.message, {
         position: "top-center",
-      });
+      })
     },
   });
 
