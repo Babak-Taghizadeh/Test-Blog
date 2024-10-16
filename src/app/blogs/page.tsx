@@ -3,7 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getBlogs } from "../../../lib/Actions";
+import { getBlogs } from "@/lib/Actions";
 import Blogs from "@/components/Blogs";
 import Header from "@/components/Header";
 import { Metadata } from "next";

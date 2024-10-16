@@ -1,11 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getBlog } from "../../lib/Actions";
+import { getBlog } from "@/lib/Actions";
 import Image from "next/image";
 import LoadingSpinner from "./ui/LoadingSpinner";
-import { sanitizeContent } from "../../utils/sanitizeText";
-import { formatDate } from "../../utils/formatDate";
+import { sanitizeContent } from "@/utils/sanitizeText";
+import { formatDate } from "@/utils/formatDate";
 
 const Blog = ({ id }: { id: string }) => {
   const { data, isLoading, error } = useQuery({

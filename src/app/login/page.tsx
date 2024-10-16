@@ -10,8 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import InputField from "@/components/ui/InputField";
 import { useMutation } from "@tanstack/react-query";
-import RequestLogin from "../../../lib/RequestLogin";
-import { ROUTES } from "../../../lib/constants";
+import { RequestLogin } from "@/lib/Actions";
+import { ROUTES } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Logo from "../../../public/logo.png";
@@ -46,6 +46,7 @@ const LoginPage = () => {
         type: "error",
         position: "top-center",
       });
+      console.log(error)
     },
   });
 

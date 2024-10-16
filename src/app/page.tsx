@@ -1,6 +1,6 @@
 import Button from "@/components/ui/Button";
 import Link from "next/link";
-import { ROUTES } from "../../lib/constants";
+import { ROUTES } from "@/lib/constants";
 import { BsArrowDownCircleFill } from "react-icons/bs";
 
 export default function Home() {

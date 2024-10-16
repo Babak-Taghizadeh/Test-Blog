@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { getBlogs } from "../../lib/Actions";
+import { getBlogs } from "@/lib/Actions";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { ROUTES } from "../../lib/constants";
+import { ROUTES } from "@/lib/constants";
 import LoadingSpinner from "./ui/LoadingSpinner";
-import { sanitizeSliceExcerpt } from "../../utils/sanitizeText";
-import { formatDate } from "../../utils/formatDate";
+import { sanitizeSliceExcerpt } from "@/utils/sanitizeText";
+import { formatDate } from "@/utils/formatDate";
 import Button from "./ui/Button";
 
 const Blogs = () => {

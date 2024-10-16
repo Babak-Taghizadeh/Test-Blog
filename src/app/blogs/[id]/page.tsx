@@ -3,11 +3,12 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getBlog, getBlogs } from "../../../../lib/Actions";
+import { getBlog, getBlogs } from "@/lib/Actions";
 import Blog from "@/components/Blog";
 import Header from "@/components/Header";
 import { Metadata } from "next";
 
+// GENERATING STATIC PARAMS FOR BETTER SEO RESULTS
 export async function generateStaticParams() {
   try {
     const blogs = await getBlogs();    

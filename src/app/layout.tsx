@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
-import ReactQueryProvider from "../../utils/Providers/ReactQueryProvider";
+import ReactQueryProvider from "@/utils/Providers/ReactQueryProvider";
 
 const Vazir = Vazirmatn({
   subsets: ["arabic"],

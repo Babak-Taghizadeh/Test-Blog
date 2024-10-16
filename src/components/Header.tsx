@@ -1,30 +1,32 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Button from "./ui/Button";
 import { MdOutlineExitToApp, MdArrowForwardIos } from "react-icons/md";
 import Link from "next/link";
-import { ROUTES } from "../../lib/constants";
-import { signOut } from "../../lib/Actions";
-
+import { ROUTES } from "@/lib/constants";
+import { signOut } from "@/lib/Actions";
 
 const Header = ({ backButton }: { backButton?: boolean }) => {
   const [scrollY, setScrollY] = useState<boolean>(false);
 
-  const handleScrollY = () =>
-    window.scrollY > 0 ? setScrollY(true) : setScrollY(false);
+  // CONTROLING FUNCTIONS EXTRA RENDERS
+  const handleScrollY = useCallback(() => {
+    setScrollY(window.scrollY > 0);
+  }, []);
 
+  // CHECKING IF USER IS SCROLLING
   useEffect(() => {
     window.addEventListener("scroll", handleScrollY);
 
     return () => {
       window.removeEventListener("scroll", handleScrollY);
     };
-  }, []);
+  }, [handleScrollY]);
 
   const handleSignOut = async () => {
-    signOut()
-  }
+    signOut();
+  };
 
   return (
     <header
