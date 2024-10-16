@@ -34,22 +34,22 @@ export const POST = async (request: NextRequest) => {
   );
   if (isUser) {
     const token = uuidv4();
-    cookies().set({
-      name: 'token',
-      value: token,
+    cookies().set("token", token,{
       httpOnly: true,
       secure: true,
       sameSite: "lax",
       path: "/",
-      expires: 60 * 60 * 24,
+      expires: new Date(Date.now() + 60 * 60 * 24 * 1000),
     });
-    return NextResponse.json({ message: "خوش آمدید."}, { 
-        headers: {
-            "Content-Type": "application/json",
-            "Set-Cookie": `token=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Expires=${new Date(Date.now() + 60 * 60 * 24 * 1000).toUTCString()}`
-        },
-        status: 200
-     });
+    return NextResponse.json(
+      { message: "خوش آمدید." },
+      {
+        status: 200,
+      }
+    );
   }
-  return NextResponse.json({ error: "اطلاعات وارد شده نا معتر هستند" }, { status: 401 });
+  return NextResponse.json(
+    { error: "اطلاعات وارد شده نا معتر هستند" },
+    { status: 401 }
+  );
 };

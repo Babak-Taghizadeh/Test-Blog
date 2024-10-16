@@ -17,7 +17,7 @@ export const RequestLogin = async(loginInfo: LoginProps): Promise<LoginResponse>
         return response.json();
       } catch (error) {
         if (error instanceof Error) {
-          throw new Error(error.message || "خطایی پیش آمده");
+          throw new Error(error.message + "خطایی پیش آمده");
         } else {
           throw new Error("لطفا مجددا امتحان کنید");
         }
