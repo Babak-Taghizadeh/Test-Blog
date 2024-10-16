@@ -25,15 +25,26 @@ const users: UsersInfo[] = [
 ];
 
 export const POST = async (request: NextRequest) => {
-  const { userName, password } = await request.json();
+  try {
+    const { userName, password } = await request.json();
+    
+    const isUser = users.find(
+      (user) => user.userName === userName && user.password === password
+    );
 
-  const isUser = users.find(
-    (user) => user.userName === userName && user.password === password
-  );
-  if (isUser) {
-    return NextResponse.json({ message: "خوش آمدید."}, {
-      status: 200
-    });
+    if (isUser) {
+      return NextResponse.json({ message: "خوش آمدید." }, { status: 200 });
+    }
+
+    return NextResponse.json(
+      { message: "اطلاعات وارد شده نا معتبر هستند" },
+      { status: 401 }
+    );
+  } catch (error) {
+    console.error("Error during login:", error);
+    return NextResponse.json(
+      { message: "مشکلی پیش آمد. لطفا مجددا امتحان کنید." },
+      { status: 500 }
+    );
   }
-  return NextResponse.json({ message: "اطلاعات وارد شده نا معتبر هستند" }, { status: 401 });
 };
