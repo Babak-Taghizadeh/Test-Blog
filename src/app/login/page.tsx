@@ -41,8 +41,8 @@ const LoginPage = () => {
       router.push(ROUTES.BLOGS);
     },
     onError: (error) => {
-      const message = error instanceof Error ? error.message : "مشکلی پیش امده";
-      toast.error(message, {
+      console.error(error);
+      toast.error("اطلاعات وارد شده نا معتبر هستند", {
         position: "top-center",
       });
     },
