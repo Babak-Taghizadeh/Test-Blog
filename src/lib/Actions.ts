@@ -11,7 +11,7 @@ export const RequestLogin = async (
   loginInfo: LoginProps
 ): Promise<LoginResponse | undefined> => {
   try {
-    const response = await fetch("http://localhost:3000/api/auth", {
+    const response = await fetch(API_ROUTES.LOGIN_REQUEST, {
       method: "POST",
       body: JSON.stringify(loginInfo),
       headers: { "Content-Type": "application/json" },
