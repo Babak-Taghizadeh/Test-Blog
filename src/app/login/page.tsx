@@ -41,8 +41,8 @@ const LoginPage = () => {
       router.push(ROUTES.BLOGS);
     },
     onError: (error) => {
-      console.error(error);
-      toast.error(error.message, {
+      const message = error instanceof Error ? error.message : "مشکلی پیش امده";
+      toast.error(message, {
         position: "top-center",
       });
     },

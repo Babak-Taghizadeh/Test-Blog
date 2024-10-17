@@ -10,32 +10,32 @@ import { API_ROUTES } from "./constants";
 export const RequestLogin = async (
   loginInfo: LoginProps
 ): Promise<LoginResponse | undefined> => {
-  const token = uuidv4();
   try {
-    const response = await fetch(API_ROUTES.LOGIN_REQUEST, {
+    const response = await fetch("http://localhost:3000/api/auth", {
       method: "POST",
       body: JSON.stringify(loginInfo),
       headers: { "Content-Type": "application/json" },
     });
     if (!response.ok) {
-      throw new Error((await response.json()).message);
+      const errorData = await response.json();
+      throw new Error(errorData.message);
     }
-
     const authData = await response.json();
+    const token = uuidv4();
     cookies().set("token", token, {
-      path: "/",
       httpOnly: true,
-      sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      expires: new Date(Date.now() + 60 * 60 * 1000),
+      path: "/",
+      expires: new Date(Date.now() + 60 * 60 * 24 * 1000),
+      sameSite: "lax",
     });
     return authData;
   } catch (error) {
     console.error(error);
     if (error instanceof Error) {
-      throw new Error(error.message || "خطایی پیش آمده");
+      throw error
     } else {
-      throw new Error("لطفا مجددا امتحان کنید");
+      throw new Error('مجددا تلاش کنید');
     }
   }
 };
